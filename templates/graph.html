@@ -1,0 +1,424 @@
+<?php include('header.php') ?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS File -->
+    <link rel="stylesheet" href="static/assets/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="static/assets/bootstrap/css/bootstrap.min.css">
+
+    <!-- fontawesome -->
+    <link href="static/assets/css/all.css" rel="stylesheet">
+
+    <!-- stylecss -->
+    <link rel="stylesheet" href="static/assets/css/style.css">
+
+    <!-- chartjs -->
+    <link rel="stylesheet" type="text/css" href="static/assets/chart.js/dist/Chart.min.css">
+    
+    <script src="static/assets/chart.js/dist/Chart.min.js"></script>
+    <script src="static/assets/chart.js/dist/Chart.js"></script>
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
+
+    <title>Predict Value</title>
+
+    <script>
+      window.onload = function () {
+      var performa = {{pk}};
+      var dps = [];   //dataPoints. 
+      var chart = new CanvasJS.Chart("chartContainer",{
+            zoomEnabled: true,
+            zoomType: "x",
+            legend: {
+            horizontalAlign: "right",
+            verticalAlign: "center"
+            },
+            title :{
+              text: "Grafik Performansi Karyawan"
+            },
+            axisX: {
+              viewportMinimum: 1,
+              viewportMaximum: 500,
+              title: "Karyawan"
+            },
+            axisY: {
+              interval: 5,
+              minimum: {{pkmin}},
+              maximum: {{pkmax}},					
+              title: "Nilai"
+            },
+            data: [{
+              type: "line",
+              dataPoints : dps
+            }]
+          });
+
+        function parseDataPoints () {
+            for (var i = 0; i <= performa.length; i++)
+              dps.push({y: performa[i]});     
+        };
+
+        parseDataPoints();
+        chart.options.data[0].dataPoints = dps;
+        chart.render();
+      
+      }
+        </script>
+        
+
+
+</head>
+
+<body  class="pagebackground">
+
+    <div>
+      <div class="container">
+        <!-- engagement -->
+        <div class="row" style="padding-top:40px;">
+          <div class="col-md-3 padding-0">
+            <div class="card engagement">
+              <div class="card-body">
+                <h5>Nilai Prediksi</h5>
+                <h3><span class="counter">{{name}}</span></h3>
+                <p>Hasil Perhitungan SVM</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md padding-0">
+            <div class="card division">
+              <div class="card-body">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-sm">
+                      <div class="box">
+                        <div class="chart" data-percent="100">
+                          <h3><span class="counter">{{kom}}</span></h3>
+                          <h4>Nilai Kompetensi</h4>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm">
+                      <div class="box">
+                        <div class="chart" data-percent="100">
+                          <h3><span class="counter">{{beh}}</span></h3>
+                          <h4>Nilai Behavior</h4>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm">
+                      <div class="box">
+                        <div class="chart" data-percent="100">
+                          <h3><span class="counter">{{uc}}</span></h3>
+                          <h4>Engagement Ucapan</h4>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm">
+                      <div class="box">
+                        <div class="chart" data-percent="100">
+                          <h3><span class="counter">{{ti}}</span></h3>
+                          <h4>Engagement Tinggal</h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Graph -->
+        <div class="row pt-2  justify-content-center">
+          <!-- Info Performansi -->
+          <div class="col-md data-background padding-0">
+            <div class="card" >
+              <div class="minmax">
+                <div class="card-body">
+                  <h5 class="card-title">Performansi</h5>
+                    <div class="row pt-2 justify-content-center">
+                        <div class="col">
+                          <h6 class="valueslabel">Rata-rata</h6>
+                        </div>
+                        <div class="col">
+                          <h6 class="values">{{pkmean}}</h6>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <h6 class="valueslabel">Maksimal</h6>
+                        </div>
+                        <div class="col">
+                          <h6 class="values">{{pkmax}}</h6>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <h6 class="valueslabel">Minimal</h6>
+                        </div>
+                        <div class="col">
+                          <h6 class="values">{{pkmin}}</h6>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end  -->
+          
+        <!-- Nilai Kompetensi -->
+          <div class="col-md data-background padding-0">
+            <div class="card" >
+              <div class="minmax">
+              <div class="card-body">
+                <h5 class="card-title">Nilai Kompetensi</h5>
+                  <div class="row pt-2 justify-content-center">
+                      <div class="col">
+                        <h6 class="valueslabel">Rata-rata</h6>
+                      </div>
+                      <div class="col">
+                        <h6 class="values">{{nkmean}}</h6>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <h6 class="valueslabel">Maksimal</h6>
+                      </div>
+                      <div class="col">
+                        <h6 class="values">{{nkmax}}</h6>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <h6 class="valueslabel">Minimal</h6>
+                      </div>
+                      <div class="col">
+                        <h6 class="values">{{nkmin}}</h6>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <!-- end -->
+          
+        <!-- Nilai Behavior -->
+          <div class="col-md data-background padding-0">
+            <div class="card" >
+              <div class="minmax">
+                <div class="card-body">
+                  <h5 class="card-title">Nilai Behavior</h5>
+                    <div class="row pt-2 justify-content-center">
+                        <div class="col">
+                          <h6 class="valueslabel">Rata-rata</h6>
+                        </div>
+                        <div class="col">
+                          <h6 class="values">{{nbmean}}</h6>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <h6 class="valueslabel">Maksimal</h6>
+                        </div>
+                        <div class="col">
+                          <h6 class="values">{{nbmax}}</h6>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <h6 class="valueslabel">Minimal</h6>
+                        </div>
+                        <div class="col">
+                          <h6 class="values">{{nbmin}}</h6>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end -->
+          
+        <!-- Engagement Ucapan -->
+          <div class="col-md data-background padding-0">
+            <div class="card" >
+              <div class="minmax">
+                <div class="card-body">
+                  <h5 class="card-title">Engagement Ucapan</h5>
+                    <div class="row pt-2 justify-content-center">
+                        <div class="col">
+                          <h6 class="valueslabel">Rata-rata</h6>
+                        </div>
+                        <div class="col">
+                          <h6 class="values">{{eumean}}</h6>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <h6 class="valueslabel">Maksimal</h6>
+                        </div>
+                        <div class="col">
+                          <h6 class="values">{{eumax}}</h6>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <h6 class="valueslabel">Minimal</h6>
+                        </div>
+                        <div class="col">
+                          <h6 class="values">{{eumin}}</h6>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end  -->
+          
+        <!-- Engagement tinggal -->
+          <div class="col-md data-background padding-0">
+            <div class="card" >
+              <div class="minmax">
+                <div class="card-body">
+                  <h5 class="card-title">Engagement tinggal</h5>
+                    <div class="row pt-2 justify-content-center">
+                        <div class="col">
+                          <h6 class="valueslabel">Rata-rata</h6>
+                        </div>
+                        <div class="col">
+                          <h6 class="values">{{etmean}}</h6>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <h6 class="valueslabel">Maksimal</h6>
+                        </div>
+                        <div class="col">
+                          <h6 class="values">{{etmax}}</h6>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <h6 class="valueslabel">Minimal</h6>
+                        </div>
+                        <div class="col">
+                          <h6 class="values">{{etmin}}</h6>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end Graph -->
+      </div>
+      
+          <div class="col-sm data-background">
+            <div class="card">
+              <div class="card-body">
+                <canvas id="myChart3"></canvas>
+              </div>
+            </div>
+          </div>
+          <div class="row pt-2  justify-content-center">
+            <div class="col-md padding-0" >
+                <div class="card">
+                  <div class="card-body">
+                    <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <!-- <div class="row pt-2  justify-content-center">
+            <div class="col-md padding-0" >
+                <div class="card">
+                  <div class="card-body">
+                    <div id="chartContainer2" style="height: 300px; width: 100%;"></div>
+                  </div>
+                </div>
+              </div>
+          </div> -->
+        
+        <!-- end graph -->
+      </div>
+      <!-- end container -->
+    </div>
+    <!-- Vanilla JavaScript -->
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="static/assets/js/easypiechart.js"></script>
+    <!-- As a jQuery plugin -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js"></script>
+    <script src="static/assets/js/jquery.easypiechart.js"></script>
+
+    <script>
+        // countet-up
+        $('.counter').counterUp({
+            delay: 10,
+            time: 2000
+        });
+        $('.counter').addClass('animated fadeInDownBig');
+        $('h3').addClass('animated fadeIn');
+        // jQuery easypiechart
+        $(function() {
+            $('.chart').easyPieChart({
+                // options here
+            });
+        });
+
+    let myChart3 = document.getElementById('myChart3').getContext('2d');
+    let kkk = {{nk}};
+    let kkx = [];
+    for (k=0; k<kkk.length; k++){
+          kkx[k] = k+1 ;
+    };
+    let massPopChart = new Chart(myChart3, {
+        type: 'line', //bar, horizontal, pie,line,dougnut,radar,and polar area
+        data: {
+            labels: kkx,
+            datasets: [{
+                data: kkk,
+                label: 'Nilai Input',
+
+                backgroundColor: '#149DD5',
+
+            }]
+        },
+        options: {}
+    });
+
+    // pieChart
+    // let myChart2 = document.getElementById('myChart2').getContext('2d');
+    // let massPopChart2 = new Chart(myChart2, {
+    //     type: 'line', //bar, horizontal, pie,line,dougnut,radar,and polar area
+    //     data: {
+    //         labels: ['Nilai Kompetensi', 'Nilai Behavior', 'Engagement Ucapan', 'Engagement Tinggal'],
+    //         datasets: [{
+    //             data: [
+    //                 {{kom}},
+    //                 {{beh}},
+    //                 {{uc}},
+    //                 {{ti}},
+    //             ],
+    //             label: 'Nilai Input',
+
+    //             backgroundColor: '#149DD5',
+
+    //         }]
+    //     },
+    //     options: {}
+    // });
+
+    </script>
+    <!-- line chart -->
+</body>
+
+</html>
+

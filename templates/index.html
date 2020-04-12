@@ -1,0 +1,98 @@
+<?php include('header.php') ?>
+<!-- content2 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS File -->
+    <link rel="stylesheet" href="static/assets/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="static/assets/bootstrap/css/bootstrap.min.css">
+
+    <!-- fontawesome -->
+    <link href="static/assets/css/all.css" rel="stylesheet">
+
+    <!-- stylecss -->
+    <link rel="stylesheet" href="static/assets/css/style.css">
+
+    <!-- chartjs -->
+    <link rel="stylesheet" type="text/css" href="static/assets/chart.js/dist/Chart.min.css">
+    <script src="static/assets/chart.js/dist/Chart.js"></script>
+    <script src="static/assets/chart.js/dist/Chart.min.js"></script>
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
+
+    <title>Performance Form</title>
+</head>
+
+<body>
+<div class="container">
+  <div class="row justify-content-center padding-0">
+    <div class="col-sm-5 padding-0">
+      <div class="logo">
+        <img src="static/assets/images/logotelkom.png">
+      </div>
+    </div>
+    <div class="col-sm-5">
+      <div class="formform">
+        <form method="POST" action="http://localhost:5000/graph">
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">Nilai Kompetensi</label>
+            <input type="text" class="form-control" id="var-1" name="nilai_kompetensi">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Nilai Behavior</label>
+            <input type="text" class="form-control" id="var-2" name="nilai_behavior">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Engagement Ucapan</label>
+            <input type="text" class="form-control" id="var-3" name="engagement_ucapan">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Engagement Tinggal</label>
+            <input type="text" class="form-control" id="var-4" name="engagement_tinggal">
+          </div>
+
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+    
+  </div>
+</div>
+<script src="static/assets/js/chart.js"></script>
+<!-- Vanilla JavaScript -->
+<script src="static/assets/js/easypiechart.js"></script>
+
+<!-- As a jQuery plugin -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js"></script>
+<script src="static/assets/js/jquery.easypiechart.js"></script>
+
+<script>
+    // countet-up
+    $('.counter').counterUp({
+        delay: 10,
+        time: 2000
+    });
+    $('.counter').addClass('animated fadeInDownBig');
+    $('h3').addClass('animated fadeIn');
+    // jQuery easypiechart
+    $(function() {
+        $('.chart').easyPieChart({
+            // options here
+        });
+    });
+</script>
+</body>
+
+</html>
+
+<?php include('footer.php') ?>

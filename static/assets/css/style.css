@@ -1,0 +1,178 @@
+.pagebackground {
+    background-color:#D5D8DC;
+}
+.padding-0{
+    padding-right:0;
+    padding-left:0;
+}
+
+/* navbar */
+
+.navbar {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    z-index: 1;
+    width: 100%;
+
+}
+
+.navbar-brand{
+	font-family: Nanum Gothic;
+    font-size: 25px;
+	color: #149DD5;
+}
+
+
+.nav-link {
+	font-family: Nanum Gothic;
+	text-transform: capitalize;
+	margin-right: 15px;
+}
+
+.nav-link:hover::after 
+{
+	content: '';
+	display: block;
+	border-bottom: 3px solid  #149DD5;
+	width: 50%;
+	margin: auto;
+	padding-bottom: 5px;
+	margin-bottom: -8px;
+
+}
+
+.navnav {
+	background-color:#149DD5;
+}
+
+/* piechart */
+.card .box .chart{
+    text-align: center;
+    font-family: Nanum Gothic;
+    color: #149DD5;
+    margin: 0 auto;
+    padding-bottom: 14px;
+}
+
+.card .box .chart h3{
+    top: 30%;
+    left: 0;
+    right: 0;
+    font-size: 30px;
+    position: absolute;
+}
+
+.card .box h4{
+    top: 83%;
+    left: 0;
+    right: 0;
+    position: absolute;
+    font-weight: 900;
+    font-size: 12px;
+    text-transform: capitalize;
+}
+
+.card .box .chart canvas{
+    width: 120px;
+    position: relative;
+    
+}
+
+/* engagement */
+.engagement{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.engagement{
+    background-color: #149DD5;
+}
+.engagement h3 {
+    font-family: Nanum Gothic;
+    font-size: 60px;
+    text-align: center;
+    color: white;
+}
+.engagement h5 {
+    font-family: Nanum Gothic;
+    text-transform: capitalize;
+    font-size: 15px;
+    text-align: center;
+    color: white;
+}
+.engagement p {
+    font-family: Nanum Gothico;
+    font-size: 12px;
+    text-align: center;
+    color: white;
+}
+
+
+.data-background card{
+	background-color: white;
+}
+
+/* form */
+.formform {
+	box-shadow: 0 3px 20px rgba(0, 0, 0, 0.5);
+	border-radius: 12px;
+	margin-top: 50px;
+	padding: 25px;
+	background-color: white;
+    margin-bottom: 5px;
+	
+}
+
+
+.logo img{
+    margin-top: 100px;
+    width: 200px;
+    height: 260px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.img-responsive {
+    margin: 0 auto;
+}
+
+/* Minmaxcard */
+.card .minmax .card-title{
+    font-family: 'Montserrat';
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+}
+.card .minmax .valueslabel{
+    font-size: 15px;
+    font-family: Nanum Gothico;
+    color: #149DD5;
+    text-align: center;
+    margin-top: 7px;
+}
+.card .minmax .values{
+    font-size: 20px;
+    font-family: 'Montserrat';
+    color: red;
+}
+
+/* chartjs */
+.chartWrapper {/* w w w. j a v  a2 s.co  m*/
+    position: relative;
+ }
+ .chartWrapper > canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    pointer-events:none;
+ }
+ .chartAreaWrapper {
+    width: 600px;
+    overflow-x: scroll;
+ }
