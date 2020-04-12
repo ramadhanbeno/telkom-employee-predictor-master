@@ -33,34 +33,62 @@
 <body>
 <div class="container">
   <div class="row justify-content-center padding-0">
-    <div class="col-sm-5 padding-0">
+    <div class="col padding-0">
       <div class="logo">
         <img src="static/assets/images/logotelkom.png">
       </div>
     </div>
-    <div class="col-sm-5">
-      <div class="formform">
-        <form method="POST" action="http://localhost:5000/graph">
-
-          <div class="form-group">
-            <label for="exampleInputEmail1">Nilai Kompetensi</label>
-            <input type="text" class="form-control" id="var-1" name="nilai_kompetensi">
+    <div class="col">
+      <div class="card mt-5">
+        <h4 class="card-header">Employee Predictor Form</h4>
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <div>
+                <form method="POST" action="http://localhost:5000/graph">
+        
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Nilai Kompetensi</label>
+                    <input type="text" class="form-control" id="var-1" name="nilai_kompetensi">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Nilai Behavior</label>
+                    <input type="text" class="form-control" id="var-2" name="nilai_behavior">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Engagement Ucapan</label>
+                    <input type="text" class="form-control" id="var-3" name="engagement_ucapan">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Engagement Tinggal</label>
+                    <input type="text" class="form-control" id="var-4" name="engagement_tinggal">
+                  </div>
+        
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+              </div>
+            </div>
+            <div class="line">
+            </div>
+            <div class="col">
+              <div class="card">
+                <div class="card-body">
+                  <form>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <label for="exampleFormControlFile1">Unggah Berkas</label>
+                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                      </div>
+                      <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Upload</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="exampleInputEmail1">Nilai Behavior</label>
-            <input type="text" class="form-control" id="var-2" name="nilai_behavior">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputEmail1">Engagement Ucapan</label>
-            <input type="text" class="form-control" id="var-3" name="engagement_ucapan">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputEmail1">Engagement Tinggal</label>
-            <input type="text" class="form-control" id="var-4" name="engagement_tinggal">
-          </div>
-
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+        </div>
       </div>
     </div>
     
