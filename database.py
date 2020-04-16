@@ -4,8 +4,13 @@ import pandas as pd
 import numpy as np
 from sklearn.svm import SVR
 from sklearn.metrics import mean_squared_error
-from flask import render_template, Flask, request, url_for, redirect
+from flask import render_template, Flask, request, url_for, redirect, flash, send_from_directory
+from werkzeug.utils import secure_filename
 from statistics import mean,median,stdev
+import os
+
+UPLOAD_FOLDER = 'uploads'
+ALLOWED_EXTENSIONS = {'csv', 'xlsx'}
 
 def predict(nilai_kompetensi,nilai_behavior,engagement_ucapan,engagement_tinggal):
     conn = pymysql.connect(host='localhost',
@@ -57,6 +62,7 @@ def predict(nilai_kompetensi,nilai_behavior,engagement_ucapan,engagement_tinggal
         conn.close()
 
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/')
 def index():
@@ -152,6 +158,37 @@ def formu():
                                 etmean = etmean
                                )
 
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+app.secret_key = "secret key"
+
+@app.route('/upload', methods=['GET', 'POST'])
+def upload_file():
+    if request.method == 'POST':
+         if 'file' not in request.files:
+            flash('No file part')
+            return redirect('/')
+         file = request.files['file']
+         if file.filename == '':
+            flash('No file selected for uploading')
+            return redirect('/')
+         if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            flash('File successfully uploaded')
+            return redirect('/')
+         else:
+            flash('Allowed file types are csv and xlsx')
+            return redirect('/')
+
+@app.route('/upload')
+def uploaded_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'],
+                               filename)
 
 if __name__ == '__main__':
+   app.secret_key = 'super secret key'
+   app.config['SESSION_TYPE'] = 'filesystem'
    app.run(debug = True)
